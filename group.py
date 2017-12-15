@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import csv
 import sys
 
@@ -13,10 +11,10 @@ print "Input:", filename
 reader = csv.reader(f)
 your_list = list(reader)
 elements = len(your_list[0])
-print 'elements', elements
+print 'Line elements:', elements
 your_list[0].append( "Group" );
-print len(your_list[0])
-print 'LINES', len(your_list)
+print 'Group name element:', len(your_list[0])
+print 'Lines:', len(your_list)
 
 groups = {}
 
@@ -26,7 +24,10 @@ writer.writerow(your_list[0])
 
 minimal_snp=700
 minimal_length=7
-minimal_overlap=0.1
+minimal_overlap=0.2
+print 'minimal_snp:',minimal_snp
+print 'minimal_length (cM):',minimal_length
+print 'minimal_overlap:',minimal_overlap
 
 for row1 in your_list:
 	if not row1[3].isdigit(): continue
@@ -71,7 +72,7 @@ for k in groups.keys():
 
 for k in groups.keys():
 	if len(groups[k]) > 1:
-		print k, groups[k]
+		print k, '\t', groups[k]
 
 for row1 in your_list:
 	for k in groups.keys():
@@ -81,3 +82,6 @@ for row1 in your_list:
 			writer.writerow(row1)
 
 f.close()
+
+print 'Groups:', len(groups)
+

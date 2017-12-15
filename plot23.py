@@ -14,7 +14,6 @@ fig.add_axes(ax)
 f = open(sys.argv[1], 'rb')
 reader = csv.reader(f)
 your_list = list(reader)
-elements = len(your_list[0])
 groups = {}
 
 clrs=mcolors.cnames.keys()
@@ -36,7 +35,9 @@ for row1 in your_list:
 
 print groups
 
-print len(clrs)
+print 'Lines:', len(your_list)
+print 'Groups:', len(groups)
+print 'Max Colors:', len(clrs)
 
 ax.set_xlim(0, 250000000)
 ax.set_ylim(24, 0)
